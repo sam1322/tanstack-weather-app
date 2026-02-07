@@ -1,12 +1,12 @@
 {
-  "projectName": "ai-testing",
+  "projectName": "fresh-start",
   "mode": "file-router",
   "typescript": true,
   "packageManager": "pnpm",
   "tailwind": true,
   "addOnOptions": {
-    "prisma": {
-      "database": "postgres"
+    "drizzle": {
+      "database": "postgresql"
     }
   },
   "git": true,
@@ -16,9 +16,9 @@
     "biome",
     "nitro",
     "start",
-    "tanstack-query",
-    "prisma",
+    "drizzle",
     "shadcn",
+    "tanstack-query",
     "table",
     "events"
   ]
