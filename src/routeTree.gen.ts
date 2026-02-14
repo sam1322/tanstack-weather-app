@@ -10,9 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TestIndexRouteImport } from './routes/test/index'
 import { Route as TalksIndexRouteImport } from './routes/talks.index'
 import { Route as SpeakersIndexRouteImport } from './routes/speakers.index'
 import { Route as ScheduleIndexRouteImport } from './routes/schedule.index'
+import { Route as TodoNewRouteImport } from './routes/todo/new'
 import { Route as TalksSlugRouteImport } from './routes/talks.$slug'
 import { Route as SpeakersSlugRouteImport } from './routes/speakers.$slug'
 import { Route as DemoTanstackQueryRouteImport } from './routes/demo/tanstack-query'
@@ -33,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TestIndexRoute = TestIndexRouteImport.update({
+  id: '/test/',
+  path: '/test/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TalksIndexRoute = TalksIndexRouteImport.update({
   id: '/talks/',
   path: '/talks/',
@@ -46,6 +53,11 @@ const SpeakersIndexRoute = SpeakersIndexRouteImport.update({
 const ScheduleIndexRoute = ScheduleIndexRouteImport.update({
   id: '/schedule/',
   path: '/schedule/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TodoNewRoute = TodoNewRouteImport.update({
+  id: '/todo/new',
+  path: '/todo/new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TalksSlugRoute = TalksSlugRouteImport.update({
@@ -127,9 +139,11 @@ export interface FileRoutesByFullPath {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/speakers/$slug': typeof SpeakersSlugRoute
   '/talks/$slug': typeof TalksSlugRoute
+  '/todo/new': typeof TodoNewRoute
   '/schedule/': typeof ScheduleIndexRoute
   '/speakers/': typeof SpeakersIndexRoute
   '/talks/': typeof TalksIndexRoute
+  '/test/': typeof TestIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -147,9 +161,11 @@ export interface FileRoutesByTo {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/speakers/$slug': typeof SpeakersSlugRoute
   '/talks/$slug': typeof TalksSlugRoute
+  '/todo/new': typeof TodoNewRoute
   '/schedule': typeof ScheduleIndexRoute
   '/speakers': typeof SpeakersIndexRoute
   '/talks': typeof TalksIndexRoute
+  '/test': typeof TestIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -168,9 +184,11 @@ export interface FileRoutesById {
   '/demo/tanstack-query': typeof DemoTanstackQueryRoute
   '/speakers/$slug': typeof SpeakersSlugRoute
   '/talks/$slug': typeof TalksSlugRoute
+  '/todo/new': typeof TodoNewRoute
   '/schedule/': typeof ScheduleIndexRoute
   '/speakers/': typeof SpeakersIndexRoute
   '/talks/': typeof TalksIndexRoute
+  '/test/': typeof TestIndexRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/api/tq-todos': typeof DemoApiTqTodosRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
@@ -190,9 +208,11 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/speakers/$slug'
     | '/talks/$slug'
+    | '/todo/new'
     | '/schedule/'
     | '/speakers/'
     | '/talks/'
+    | '/test/'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/start/api-request'
@@ -210,9 +230,11 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/speakers/$slug'
     | '/talks/$slug'
+    | '/todo/new'
     | '/schedule'
     | '/speakers'
     | '/talks'
+    | '/test'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/start/api-request'
@@ -230,9 +252,11 @@ export interface FileRouteTypes {
     | '/demo/tanstack-query'
     | '/speakers/$slug'
     | '/talks/$slug'
+    | '/todo/new'
     | '/schedule/'
     | '/speakers/'
     | '/talks/'
+    | '/test/'
     | '/demo/api/names'
     | '/demo/api/tq-todos'
     | '/demo/start/api-request'
@@ -251,9 +275,11 @@ export interface RootRouteChildren {
   DemoTanstackQueryRoute: typeof DemoTanstackQueryRoute
   SpeakersSlugRoute: typeof SpeakersSlugRoute
   TalksSlugRoute: typeof TalksSlugRoute
+  TodoNewRoute: typeof TodoNewRoute
   ScheduleIndexRoute: typeof ScheduleIndexRoute
   SpeakersIndexRoute: typeof SpeakersIndexRoute
   TalksIndexRoute: typeof TalksIndexRoute
+  TestIndexRoute: typeof TestIndexRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoApiTqTodosRoute: typeof DemoApiTqTodosRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
@@ -271,6 +297,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/test/': {
+      id: '/test/'
+      path: '/test'
+      fullPath: '/test/'
+      preLoaderRoute: typeof TestIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/talks/': {
@@ -292,6 +325,13 @@ declare module '@tanstack/react-router' {
       path: '/schedule'
       fullPath: '/schedule/'
       preLoaderRoute: typeof ScheduleIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/todo/new': {
+      id: '/todo/new'
+      path: '/todo/new'
+      fullPath: '/todo/new'
+      preLoaderRoute: typeof TodoNewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/talks/$slug': {
@@ -403,9 +443,11 @@ const rootRouteChildren: RootRouteChildren = {
   DemoTanstackQueryRoute: DemoTanstackQueryRoute,
   SpeakersSlugRoute: SpeakersSlugRoute,
   TalksSlugRoute: TalksSlugRoute,
+  TodoNewRoute: TodoNewRoute,
   ScheduleIndexRoute: ScheduleIndexRoute,
   SpeakersIndexRoute: SpeakersIndexRoute,
   TalksIndexRoute: TalksIndexRoute,
+  TestIndexRoute: TestIndexRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoApiTqTodosRoute: DemoApiTqTodosRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
